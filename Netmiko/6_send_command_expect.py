@@ -1,4 +1,6 @@
-#
+#!/usr/bin/env python
+# Not used - example of except
+
 
 from netmiko import Netmiko
 from credentials import password1, username1
@@ -10,10 +12,11 @@ cisco1 = {
 }
 
 net_connect = Netmiko(**cisco1)
-print(net_connect.find_prompt())
-# output = net_connect.send_command("show ip int brief")
-# print(output)
-# output = net_connect.send_command("show logging")
-# print(output)
+command = "show ip int brief"
 
+print()
+print(net_connect.find_prompt())
+output = net_connect.send_command(command, expect_string=r"#")
 net_connect.disconnect()
+print(output)
+print()
