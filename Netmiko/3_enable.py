@@ -4,12 +4,13 @@
 from netmiko import Netmiko
 from getpass import getpass
 
-password = getpass()
+# Not working as our devices are using TACACS+
 
+from credentials import password1, username1
 cisco1 = {
     "host": "10.223.244.86",
-    "username": "DSV.API",
-    "password": "bale-pE3WFx!",
+    "username": username1,
+    "password": password1,
     "device_type": "cisco_ios",
 }
 
