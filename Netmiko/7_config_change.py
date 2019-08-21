@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# Not used: Valid ntc-templates not found, please install https://github.com/networktocode/ntc-templates
-
 
 from netmiko import Netmiko
 from credentials import password1, username1
@@ -11,12 +8,19 @@ cisco1 = {
     "device_type": "cisco_ios",
 }
 
+# I was forced to use my own TACACS credentials to make this work
+
+commands = ["logging history size 500"]
+
 net_connect = Netmiko(**cisco1)
-command = "show ip int brief"
+
+print(net_connect.find_prompt())
+net_connect.send_config_set("conf t")
+net_connect.send_config_set(commands)
+output = net_connect.send_command("sh run | i logging ")
+net_connect.disconnect()
+
+print(output)
 
 print()
-print(net_connect.find_prompt())
-output = net_connect.send_command(command, use_textfsm=True)
-net_connect.disconnect()
-print(output)
-print()
+
