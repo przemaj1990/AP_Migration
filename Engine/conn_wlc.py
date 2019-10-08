@@ -25,7 +25,8 @@ print(net_connect.find_prompt())
 output = net_connect.send_command(command)
 # new_output = parse_output(platform="cisco_wlc_ssh", command="ssh show ap summary", data=output)
 
-print(output)
+# print(dir(output))
+# print(dir(net_connect))
 # print(new_output)
 
 # print(get_template_dir.)
