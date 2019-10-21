@@ -22,7 +22,8 @@ import warnings
 
 import six
 
-from . import _bcrypt
+from bcrypt import _bcrypt
+
 from .__about__ import (
     __author__, __copyright__, __email__, __license__, __summary__, __title__,
     __uri__, __version__,
@@ -133,9 +134,7 @@ def kdf(password, salt, desired_key_bytes, rounds, ignore_few_rounds=False):
             "Warning: bcrypt.kdf() called with only {0} round(s). "
             "This few is not secure: the parameter is linear, like PBKDF2.")
             .format(rounds),
-            UserWarning,
-            stacklevel=2,
-        )
+            UserWarning)
 
     key = _bcrypt.ffi.new("uint8_t[]", desired_key_bytes)
     res = _bcrypt.lib.bcrypt_pbkdf(

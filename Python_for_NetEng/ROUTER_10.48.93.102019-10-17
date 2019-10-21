@@ -1,0 +1,263 @@
+
+
+
+ISR-RTR-LAB#terminal len 0
+ISR-RTR-LAB#show run
+Building configuration...
+
+
+Current configuration : 5085 bytes
+!
+! Last configuration change at 12:50:17 UTC Wed Oct 16 2019 by lab
+!
+version 16.8
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+!
+hostname ISR-RTR-LAB
+!
+boot-start-marker
+boot system flash:1234.txt
+boot system bootflash:isr4300-universalk9.16.08.02.SPA.bin
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable secret 5 $1$SXnz$ZcIHfrnvHv8j0kkS4Y.kR1
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2358900126
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2358900126
+ revocation-check none
+ rsakeypair TP-self-signed-2358900126
+!
+!
+crypto pki certificate chain TP-self-signed-2358900126
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32333538 39303031 3236301E 170D3139 30353239 31313539 
+  31385A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 33353839 
+  30303132 36308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100A8BE 1799F1D5 95DFCA20 092F15B0 6656EC3F 532AA0F4 AF24B262 
+  2D237B4C C922A01B 1EF9B017 369AC44B 963AD681 EACC8058 37D1883E 6C11CB2B 
+  97645BCE B3E54FBE BCBA4C3A E3580994 DF97546B D40D9110 B2C7F5A3 400BB1ED 
+  F9DBF995 F2DBF663 C5A47580 47433166 F427A033 76337FC7 66C7C2FE 0280698F 
+  9EEF7DA3 DD5DE675 E53BB65E 2AFFCD11 716FE8C2 5838957A A403A65E BD37D026 
+  400B5214 179D61AA AC56B906 17AF1F11 DD5043E2 CC605C06 1963D59E 66FACD24 
+  42C3C207 FD96F5C2 546A298F 22A89736 B63FAEE4 8EBC85D1 A04A21AD F442903A 
+  010B0C2B 47A1CDC5 1D983A2D 0DDC0DD6 99B8D9E9 DC7B8267 ECEC6B8A 6072D5BB 
+  04054786 71310203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 14EC83CC FE0BED90 53630CEC B5E5C0FE 32068685 
+  09301D06 03551D0E 04160414 EC83CCFE 0BED9053 630CECB5 E5C0FE32 06868509 
+  300D0609 2A864886 F70D0101 05050003 82010100 9F7F2030 6DF29B13 A43F3217 
+  AB274292 B90E18A3 0B4D43E9 101F6BF8 38ACFB86 70AADEE3 6085D7B0 3E7A2F8E 
+  8BB8F2D4 DD22B8FE 93888B10 9AECFADF CE28B9AE 1E60FFAF A2618285 B40FA9FB 
+  F20D6011 4583DD66 C2883E57 BBD8B0DA 2787614D C19B0C4F 4F08B480 986DAF35 
+  2579ECE0 D86194E6 86655ED7 00134755 DA01F806 264F0F21 93E48FBF E222E324 
+  839DC330 63145865 B8A235CE 543A47BB 072E766A B3DB6EA4 E7D8627B F54F5486 
+  C5F190B0 0F061D66 E8BFAE39 5D23BC84 03306582 BB4785BF 0EED4B1C E9097855 
+  0A1F59A2 BF9C7407 241D6CA0 5C6CEAD6 B3C071E9 D214D274 A991071B 64DF992A 
+  BF787E37 DC899C4C EAD03699 F59C7E5F FA11535B
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid ISR4331/K9 sn FDO21071JCS
+license boot level uck9
+no license smart enable
+file prompt quiet
+!
+ucse subslot 1/0
+ imc access-port shared-lom console
+ imc ip address 10.228.2.226 255.255.255.248 default-gateway 10.228.2.225 
+!
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+remote-management
+netconf-yang
+!
+!
+username lab privilege 15 password 0 cisco123
+!
+redundancy
+ mode none
+!
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback2
+ description *** UCS Management ***
+ ip address 10.228.2.225 255.255.255.255
+!
+interface GigabitEthernet0/0/0
+ description NETCONF
+ ip address 10.48.93.10 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/2
+ description NETCONFASDL
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/1/0
+!
+interface GigabitEthernet0/1/1
+!
+interface GigabitEthernet0/1/2
+!
+interface GigabitEthernet0/1/3
+!
+interface ucse1/0/0
+ description *** UCS Management ***
+ ip unnumbered Loopback2
+ no negotiation auto
+ switchport mode trunk
+ no mop enabled
+ no mop sysid
+!
+interface ucse1/0/1
+ no ip address
+ shutdown
+ no negotiation auto
+ switchport mode trunk
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface Vlan1
+ no ip address
+!
+ip forward-protocol nd
+ip ftp source-interface GigabitEthernet0/0/0
+ip http server
+ip http authentication local
+ip http secure-server
+ip tftp source-interface GigabitEthernet0
+ip route 0.0.0.0 0.0.0.0 10.48.93.3
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!
+mgcp profile default
+!
+!
+!
+!
+!
+!
+line con 0
+ transport input none
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ privilege level 15
+ login local
+line vty 5 15
+ privilege level 15
+ login local
+!
+ntp server 145.218.244.5 prefer
+ntp server 145.218.244.6
+wsma agent exec
+!
+wsma agent config
+!
+wsma agent filesys
+!
+wsma agent notify
+!
+!
+end
+
+ISR-RTR-LAB#
