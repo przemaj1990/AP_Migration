@@ -1,7 +1,7 @@
 #
 
 username1 = "pma"
-password1 = "Mugin2345!"
+password1 = "Mugin23456!"
 device_type = "cisco_ios"
 
 
