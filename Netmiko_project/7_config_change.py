@@ -1,6 +1,6 @@
 
 from netmiko import Netmiko
-from credentials import password1, username1
+from Netmiko_project.credentails import password1, username1
 cisco1 = {
     "host": "10.223.44.102",
     "username": username1,
@@ -22,5 +22,4 @@ net_connect.disconnect()
 
 print(output)
 
-print()
 
